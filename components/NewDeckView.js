@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TextInput } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { DecksContext } from '../context/DecksContext'
 import DeckView from './DeckView'
+import { styles } from './styles'
 
 export default function NewDeckView({ navigation }) {
     const [title, setTitle] = useState('')
@@ -19,14 +20,14 @@ export default function NewDeckView({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text>What is the title of your Deck?</Text>
+            <Text style={styles.h3}>What is the title of your Deck?</Text>
             <TextInput 
-                style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                style={styles.textInput}
                 onChangeText={text => setTitle(text)}
                 value={title}
             />
             <TouchableOpacity 
-                style={[styles.buttonStyle, { backgroundColor: "blue" }]}
+                style={[styles.button, { backgroundColor: "blue" }]}
                 onPress={handleAddDeck}
             >
                 <Text style={{ color: 'white' }}>Create Deck</Text>
@@ -35,25 +36,3 @@ export default function NewDeckView({ navigation }) {
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        margin: 10,
-        padding: 20,
-    },
-    item: {
-        backgroundColor: '#f9c2ff',
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
-        borderRadius: 35,
-    },
-    buttonStyle: {
-        color: 'white',
-        marginVertical: 10,
-        marginHorizontal: 10,
-        padding: 20,
-        borderRadius: 35,
-        alignItems: 'center'
-    }
-});

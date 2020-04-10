@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SafeAreaView, View, FlatList, StyleSheet, Button, Text, ShadowPropTypesIOS } from 'react-native'
+import { Notifications } from "expo";
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { NavigationContainer, useNavigation, useIsFocused } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -11,7 +12,9 @@ import NewDeckView from './components/NewDeckView'
 import NewQuestionView from './components/NewQuestionView'
 import QuizView from './components/QuizView'
 import NoCardMsg from './components/NoCardMsg'
+import { setLocalNotification } from './utils/helpers'
 import { DecksProvider } from './context/DecksContext'
+import { not } from 'react-native-reanimated'
 
 const Stack = createStackNavigator()
 const NewDeckStack = createStackNavigator()
@@ -42,6 +45,12 @@ function NewDeckStackScreen() {
 }
 
 function App() {  
+
+  useEffect(() => {
+    console.log('Setting notification')
+    setLocalNotification()
+  }, [])
+
   return (
     <DecksProvider>
       <NavigationContainer>

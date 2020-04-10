@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Button, Text, ShadowPropTypesIOS } from 'react-native';
+import { LinearGradient } from "expo-linear-gradient";
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import DeckListView from './DeckListView'
 import NoCardMsg from './NoCardMsg'
 import NewQuestionView from './NewQuestionView'
 import { DecksContext } from '../context/DecksContext';
+import { styles } from './styles'
 
 export default function DeckView({ route }) {
     const { decks, deleteDeck } = useContext(DecksContext)
@@ -36,28 +38,39 @@ export default function DeckView({ route }) {
     if (typeof deck === 'undefined') return null
     
     return (
+      <View style={styles.container}>
+        <LinearGradient
+          colors={["#ff9a9e", "#fad0c4", "#fad0c4"]}
+          style={[styles.item, { flex: 2 }]}
+        >
+          <Text style={styles.title}>{deck.title}</Text>
+          <Text style={styles.content}>{deck.questions.length} cards</Text>
+        </LinearGradient>
+        
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: "blue" }]}
+          onPress={handleAddCard}
+        >
+          <Text style={{ color: "white" }}>Add Card</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={handleStartQuiz}
+          style={[styles.button, { backgroundColor: "black" }]}
+        >
+          <Text style={{ color: "white" }}>Start Quiz</Text>
+        </TouchableOpacity>
         <View style={styles.container}>
-            <View style={styles.item}>
-                <Text style={styles.title}>{deck.title}</Text>
-                <Text style={styles.content}>{deck.questions.length} cards</Text>
-            </View>
-            <View style={styles.container}>
-                <TouchableOpacity style={[styles.buttonStyle, { backgroundColor: "blue" }]} onPress={handleAddCard}>
-                    <Text style={{ color: 'white' }}>Add Card</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={handleStartQuiz} style={[styles.buttonStyle, { backgroundColor: "black" }]}>
-                    <Text style={{ color: 'white' }}>Start Quiz</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.container}>
-                <TouchableOpacity onPress={handleDeleteDeck} style={[styles.buttonStyle, { backgroundColor: "none" }]}>
-                    <Text style={{ color: 'blue' }}>Delete Deck</Text>
-                </TouchableOpacity>
-            </View>
+          <TouchableOpacity
+            onPress={handleDeleteDeck}
+            style={[styles.button, { backgroundColor: "none" }]}
+          >
+            <Text style={{ color: "blue" }}>Delete Deck</Text>
+          </TouchableOpacity>
         </View>
-    )
+      </View>
+    );
 }
-
+/*
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -91,3 +104,4 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }
 });
+*/
