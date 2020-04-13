@@ -14,6 +14,8 @@ export default function QuizView({ route }) {
     const deck = decks[deckId]
 
     const navigation = useNavigation();
+    navigation.setOptions({ headerBackTitle: 'Back', headerTitle: `Quiz: ${deckId}` })
+
     const [currentCard, setCurrentCard] = useState(0)
     const [correctCount, setCorrectCount] = useState(0)
     const [isAnswer, showAnswer] = useState(false)
@@ -31,12 +33,12 @@ export default function QuizView({ route }) {
         console.log("In showScore:", currentCard, correctCount)
         return (
             <View style={styles.container}>
-                <LinearGradient colors={['#ff9a9e', '#fad0c4', '#fad0c4']} style={[styles.item, { flex: 2 }]}>
-                    <Text style={[styles.item, { fontSize: 28 }]}>{`Score: ${correctCount}/${totalQuestions}`}</Text>
-                    <Text style={[styles.item, { fontSize: 28 }]}>{`${Math.round(correctCount / totalQuestions * 100)}%`}</Text>
+                <LinearGradient colors={['#ff9a9e', '#fad0c4', '#fad0c4']} style={styles.item}>
+                    <Text style={styles.title}>{`Score: ${correctCount}/${totalQuestions}`}</Text>
+                    <Text style={[styles.cardText, {marginTop: 20}]}>{`${Math.round(correctCount / totalQuestions * 100)}%`}</Text>
                 </LinearGradient>
 
-                <View style={styles.container}>
+                <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         onPress={() => handleRestartQuiz() }
                         style={[styles.button, { backgroundColor: "blue" }]}
@@ -56,9 +58,6 @@ export default function QuizView({ route }) {
     }
 
     const handleCorrect = (isCorrect) => {
-        console.log("handleCorrect", isCorrect)
-        console.log("currentCard:", currentCard)
-        console.log("totalQuestions:", totalQuestions)
         if (isCorrect === true)
             setCorrectCount(correctCount+1)
         if (currentCard < totalQuestions-1) {
@@ -66,7 +65,6 @@ export default function QuizView({ route }) {
             showAnswer(false)
         }
         else {
-            console.log("Finished: current")
             setQuizFinished(true)
             clearLocalNotification()
                 .then(setLocalNotification)
@@ -77,19 +75,26 @@ export default function QuizView({ route }) {
 
     else return (
         <View style={styles.container}>  
-            <Text style={{fontSize:18}}>{currentCard}/{totalQuestions}</Text>
+            <Text style={{fontSize:18}}>Question {currentCard+1} of {totalQuestions}</Text>
             {isAnswer === false
-            ?   <LinearGradient colors={['#ff9a9e', '#fad0c4', '#fad0c4']} style={[styles.item, {flex: 2}]}>
-                    <Text style={styles.title}>{deck.title}</Text>
-                    <Text style={styles.content}>{deck.questions[currentCard].question}</Text>
-                    <Button title="Show Answer" onPress={() => showAnswer(true)}></Button>
+            ?   <LinearGradient colors={['#ff9a9e', '#fad0c4', '#fad0c4']} style={styles.item}>
+                    <View style={styles.content}>
+                        <Text style={styles.cardText}>{deck.questions[currentCard].question}</Text>
+                        <TouchableOpacity onPress={() => showAnswer(true)}>
+                            <Text style={styles.cardButton}>Show Answer</Text>
+                        </TouchableOpacity>
+                    </View>
                 </LinearGradient>
-                : <LinearGradient colors={['#ff9a9e', '#fad0c4', '#fad0c4']} style={[styles.item, { flex: 2 }]}>
-                    <Text style={styles.content}>{deck.questions[currentCard].answer}</Text>
-                    <Button title="Show Question" onPress={() => showAnswer(false)}></Button>
+                : <LinearGradient colors={['#ff9a9e', '#fad0c4', '#fad0c4']} style={styles.item}>
+                    <View style={styles.content}>
+                        <Text style={styles.cardText}>{deck.questions[currentCard].answer}</Text>
+                        <TouchableOpacity onPress={() => showAnswer(false)}>
+                            <Text style={styles.cardButton}>Show Question</Text>
+                        </TouchableOpacity>
+                    </View>
                 </LinearGradient>
             }
-            <View style={styles.container}>
+            <View style={styles.buttonContainer}>
                 <TouchableOpacity onPress={() => handleCorrect(true)} style={[styles.button, { backgroundColor: "green" }]}>
                     <Text style={{ color: 'white' }}>Correct</Text>
                 </TouchableOpacity>

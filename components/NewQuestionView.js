@@ -1,5 +1,9 @@
 import React, { useState, useContext } from 'react'
-import { View, Text, StyleSheet, TextInput } from 'react-native'
+//import { View, Text, StyleSheet, TextInput } from 'react-native'
+import {
+  KeyboardAvoidingView, View, Text, SafeAreaView, StyleSheet,
+  TextInput, Keyboard, TouchableWithoutFeedback, Platform
+} from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { DecksContext } from '../context/DecksContext'
@@ -13,6 +17,14 @@ export default function NewQuestionView({ route }) {
     const navigation = useNavigation();
 
     const submitNewQuestion = () => {
+        if (question === '') {
+          alert ('Please enter a question')
+          return
+        }
+        if (answer === '') {
+          alert('Please enter an answer')
+          return
+        }
         newQuestion = {
             question,
             answer
@@ -22,27 +34,34 @@ export default function NewQuestionView({ route }) {
     }
 
     return (
-      <View style={styles.container}>
-        <Text>Question</Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={(text) => onChangeQuestion(text)}
-          value={question}
-        />
-
-        <Text>Answer</Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={(text) => onChangeAnswer(text)}
-          value={answer}
-        />
-
-        <TouchableOpacity
-          onPress={submitNewQuestion}
-          style={[styles.button, { backgroundColor: "blue" }]}
-        >
-          <Text style={{ color: "white" }}>Submit</Text>
-        </TouchableOpacity>
-      </View>
+      <KeyboardAvoidingView behavior={Platform.Os == "ios" ? "padding" : null} style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.innerContainer}>
+              <Text>Question</Text>
+              <TextInput
+                style={styles.textInput}
+                onChangeText={(text) => onChangeQuestion(text)}
+                value={question}
+              />
+              <Text>Answer</Text>
+              <TextInput
+                style={styles.textInput}
+                onChangeText={(text) => onChangeAnswer(text)}
+                value={answer}
+              />
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                  onPress={submitNewQuestion}
+                  style={[styles.button, { backgroundColor: "blue" }]}
+                >
+                  <Text style={{ color: "white" }}>Submit</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={{ flex: 1 }} />
+            </View>
+          </TouchableWithoutFeedback>
+        </SafeAreaView>
+      </KeyboardAvoidingView>
     );
 }

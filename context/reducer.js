@@ -2,7 +2,7 @@ import { logger } from './middleware'
 import { ADD_CARD, ADD_DECK, DELETE_DECK } from './actionType'
 
 const Reducer = (state=INITIAL_STATE, action) => {
-    const { title, deckId, newQuestion } = action.payload 
+    const { deckId, newQuestion } = action.payload 
     let newDeck
 
     switch(action.type) 
@@ -14,7 +14,7 @@ const Reducer = (state=INITIAL_STATE, action) => {
                 decks: {
                     ...state.decks, 
                     [deckId]: {
-                        title: state.decks[deckId].title,
+                        title: deckId,
                         questions: newDeck
                     }
                 }
@@ -22,7 +22,7 @@ const Reducer = (state=INITIAL_STATE, action) => {
 
         case ADD_DECK:
             newDeck = {
-                title: title,
+                title: deckId,
                 questions: []
             }
             return {

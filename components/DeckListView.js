@@ -13,10 +13,11 @@ function Item({ deck, deckId }) {
     return (
       <LinearGradient
         colors={["#ff9a9e", "#fad0c4", "#fad0c4"]}
-        style={[styles.item, { flex: 1 }]}
+        style={styles.item}
       >
         <TouchableOpacity          
           onPress={() => navigation.navigate("DeckView", { deckId })}
+          styles={styles.content}
         >
           <Text style={styles.title}>{deck.title}</Text>
           <Text style={styles.num}>{deck.questions.length} cards</Text>
@@ -40,36 +41,3 @@ export default function DeckListView() {
       </View>
     );
 }
-
-/*
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: Constants.statusBarHeight,
-    },
-    item: {
-        backgroundColor: 'lightgrey',
-        borderColor: 'lightgrey',
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
-        borderLeftWidth: 1,
-        borderRightWidth: 1,
-        padding: 20,
-        marginVertical: 16,
-        marginHorizontal: 20,
-        shadowColor: 'black',
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
-        shadowOpacity: 0.4,
-        shadowRadius: 5,
-        elevation: 10
-    },
-    title: {
-        fontSize: 32,
-        color: 'darkslategrey'
-    },
-})
-
-*/
