@@ -11,7 +11,6 @@ const INITIAL_STATE = {
 export const DecksContext = createContext(INITIAL_STATE)
 
 export const DecksProvider = ({ children }) => {
-//    const [state, dispatch] = useReducer(Reducer, INITIAL_STATE)    
     const [state, dispatch] = useReducer(logger(Reducer), INITIAL_STATE);
 
     function deleteDeck(deckId) {
@@ -25,7 +24,7 @@ export const DecksProvider = ({ children }) => {
     function addDeck(deckId, title) {
         dispatch({
             type: ADD_DECK,
-            payload: { deckId, title }
+            payload: { deckId }
         })
     }
 

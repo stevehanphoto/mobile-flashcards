@@ -17,7 +17,6 @@ import QuizView from './components/QuizView'
 import NoCardMsg from './components/NoCardMsg'
 import { setLocalNotification } from './utils/helpers'
 import { DecksProvider } from './context/DecksContext'
-import { not } from 'react-native-reanimated'
 
 const Stack = createStackNavigator()
 const NewDeckStack = createStackNavigator()
@@ -58,7 +57,6 @@ function NewDeckStackScreen() {
 function App() {  
 
   useEffect(() => {
-    console.log('Setting notification')
     setLocalNotification()
   }, [])
 

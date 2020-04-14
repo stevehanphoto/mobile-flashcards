@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { SafeAreaView, View, FlatList, StyleSheet, Button, Text, ShadowPropTypesIOS } from 'react-native'
+import { SafeAreaView, View, FlatList, Button, Text, ShadowPropTypesIOS } from 'react-native'
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -30,7 +30,6 @@ export default function QuizView({ route }) {
     }
 
     const showScore = () => {
-        console.log("In showScore:", currentCard, correctCount)
         return (
             <View style={styles.container}>
                 <LinearGradient colors={['#ff9a9e', '#fad0c4', '#fad0c4']} style={styles.item}>
@@ -67,7 +66,7 @@ export default function QuizView({ route }) {
         else {
             setQuizFinished(true)
             clearLocalNotification()
-                .then(setLocalNotification)
+                .then(setLocalNotification())
         }
     }
 

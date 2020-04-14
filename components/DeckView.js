@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, ShadowPropTypesIOS } from 'react-native';
+import { SafeAreaView, View, FlatList, Text, ShadowPropTypesIOS } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';

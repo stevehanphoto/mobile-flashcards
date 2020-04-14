@@ -11,16 +11,6 @@ const styles = StyleSheet.create({
     padding: 24,
     justifyContent: "flex-end",
   },
-  LinearGradient: {
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.8,
-    shadowRadius: 10,
-    elevation: 10,
-  },
   item: {
     flex: 1,
     justifyContent: "center",
@@ -40,7 +30,7 @@ const styles = StyleSheet.create({
       height: 10,
     },
     shadowOpacity: 0.8,
-    shadowRadius: 10,
+    shadowRadius: 5,
     elevation: 10,
   },
   content: {

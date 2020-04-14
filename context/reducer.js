@@ -1,4 +1,3 @@
-import { logger } from './middleware'
 import { ADD_CARD, ADD_DECK, DELETE_DECK } from './actionType'
 
 const Reducer = (state=INITIAL_STATE, action) => {

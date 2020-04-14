@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
-//import { View, Text, StyleSheet, TextInput } from 'react-native'
 import {
-  KeyboardAvoidingView, View, Text, SafeAreaView, StyleSheet,
+  KeyboardAvoidingView, View, Text, SafeAreaView,
   TextInput, Keyboard, TouchableWithoutFeedback, Platform
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
@@ -41,12 +40,14 @@ export default function NewQuestionView({ route }) {
               <Text>Question</Text>
               <TextInput
                 style={styles.textInput}
+                maxLength={50}
                 onChangeText={(text) => onChangeQuestion(text)}
                 value={question}
               />
               <Text>Answer</Text>
               <TextInput
                 style={styles.textInput}
+                maxLength={50}
                 onChangeText={(text) => onChangeAnswer(text)}
                 value={answer}
               />

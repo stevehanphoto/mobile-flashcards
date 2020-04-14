@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { SafeAreaView, View, FlatList, StyleSheet, Button, Text, ShadowPropTypesIOS } from 'react-native'
+import { SafeAreaView, View, FlatList, Button, Text, ShadowPropTypesIOS } from 'react-native'
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from 'expo-constants'
 import { useNavigation } from '@react-navigation/native'

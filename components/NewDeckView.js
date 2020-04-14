@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
 import { 
-    KeyboardAvoidingView, View, Text, SafeAreaView, StyleSheet, 
+    KeyboardAvoidingView, View, Text, SafeAreaView, 
     TextInput, Keyboard, TouchableWithoutFeedback, Platform 
 } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -30,6 +30,7 @@ export default function NewDeckView({ navigation }) {
                         <Text style={styles.h3}>What is the title of your Deck?</Text>
                         <TextInput
                             style={styles.textInput}
+                            maxLength={20}
                             onChangeText={text => setDeckId(text)}
                             value={deckId}
                         />

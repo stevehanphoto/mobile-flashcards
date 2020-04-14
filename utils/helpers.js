@@ -1,14 +1,9 @@
+import { Vibration, Platform } from 'react-native';
 import { Notifications } from 'expo'
 import * as Permissions from "expo-permissions";
 import { AsyncStorage } from 'react-native'
 
 const NOTIFICATION_KEY = 'MobileFlashcard::notifications'
-
-export function timeToString(time = Date.now()) {
-    const date = new Date(time)
-    const todayUTC = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-    return todayUTC.toISOString().split('T')[0]
-}
 
 export const DATA = {
     React: {
@@ -19,12 +14,12 @@ export const DATA = {
                     answer: 'A library for managing user interfaces'
                 },
                 {
-                    question: 'Where do you make Ajax requests in React?',
+                    question: 'Where do you make Ajax requests in a class component in React?',
                     answer: 'The componentDidMount lifecycle event'
                 },
                 {
-                    question: 'What are some commonly used hooks?',
-                    answer: 'useState and useEffects'
+                    question: 'What hooks are used in the creation of this app?',
+                    answer: 'useState, useEffects, useReducer, useContext, and useNavigation'
                 }
 
             ]
@@ -40,12 +35,6 @@ export const DATA = {
     }
 }
 
-export function getDailyReminderValue() {
-    return {
-        today: "👋 Don't forget to log your data today!"
-    };
-}
-
 export function clearLocalNotification() {
     return AsyncStorage.removeItem(NOTIFICATION_KEY)
         .then(Notifications.cancelAllScheduledNotificationsAsync())
@@ -54,7 +43,7 @@ export function clearLocalNotification() {
 export function createLocalNotification() {
     return {
         title: 'Complete your quiz',
-        body: "Don't forget to complete at least one quiz for today!",
+        body: "Don't forget to complete your quiz for today!",
         ios: {
             sound: true,
         },
@@ -78,17 +67,16 @@ export function setLocalNotification() {
                             Notifications.cancelAllScheduledNotificationsAsync()
 
                             let tomorrow = new Date()
-                            tomorrow.setDate(tomorrow.getDate() + 1)
-                            tomorrow.setHours(14)
-                            tomorrow.setMinutes(16)
-                        
+                            tomorrow.setDate(tomorrow.getDate()+1)
+                            tomorrow.setHours(20)
+                            tomorrow.setMinutes(0)
+
                             Notifications.scheduleLocalNotificationAsync(
                                 createLocalNotification(),
                                 {
                                     time: tomorrow,
-
-                                    // Repeat notification is deprecated in iOS TODO rescheule every day
-                                    //repeat: 'day',
+                                    // Repeat notification is deprecated in iOS
+                                    repeat: 'day',
                                 }
                             )
 

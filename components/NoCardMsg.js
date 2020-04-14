@@ -1,16 +1,17 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
+import { styles } from './styles'
 
 export default function NoCardMsg() {
    return (
-      <View style={styles.center}>
-         <Text style={styles.text}>
+      <View style={styles.content}>
+         <Text style={styles.cardText}>
             Sorry, you cannot take a quiz because there are no cards in the deck
          </Text>
       </View>
    )
 }
-
+/*
 const styles = StyleSheet.create({
    center: {
       flex: 1,
@@ -23,4 +24,4 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontSize: 24
    }
-})
+})*/
