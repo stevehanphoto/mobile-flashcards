@@ -8,21 +8,27 @@ This project was tested on 2 mobile phones, an iphone X (iOS) and an Samsung Not
 
 Install the Expo Client App from Appstore for iPhone and Expo Project app from Goggle Playstore for Android phone.
 
-Assuming node.js is already installed, next install the Expo CLI with the command:
+Assuming node.js is already installed, install the Expo CLI with the command:
 
+```bash
 npm install -g expo-cli
+```
 
 To clone this repository, run the command:
 
+```bash
 git clone https://github.com/stevehanphoto/expo-mobileflashcard.git
+```
 
 cd in to expo-mobileflashcard project folder
 
 run the commands:
 
+```bash
 npm install
 
 expo start
+```
 
 Lastly the project can be loaded on to the phone and and runned using QR code.
 On the iphone use the phone's camera, an option to open app with the Expo should pop up.
@@ -50,4 +56,5 @@ On the Android phone, open the Expo app go to Scan QR Code under Tools.
     ├── utils
     │   └── helper.js # Contains the starting decks object data and functions to handle notifications  
     └── App.js # Main app
-    
+```
+

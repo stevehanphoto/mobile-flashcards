@@ -26,6 +26,7 @@ export default function QuizView({ route }) {
     const handleRestartQuiz = () => {
         setCurrentCard(0)
         setCorrectCount(0)
+        showAnswer(false)
         setQuizFinished(false)
     }
 
