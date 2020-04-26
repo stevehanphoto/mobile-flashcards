@@ -1,22 +1,22 @@
 # Mobile Flashcard Project
 
-This project is for the React Native section of the Udacity's React Nanodegree course.
-
-## Instructions to run:
+This project was built for the React Native section of the Udacity's React Nanodegree course.  The app allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.  This project encompasses the fundamental aspects of building a native application including handling infinite lists, routing, and user input.  This project is a mobile application developed using React Native for both Android and iOS.  
 
 This project was tested on 2 mobile phones, an iphone X (iOS) and an Samsung Note 5 (Android) using Expo on Windows 10.
 
+## Instructions to run:
+
 Install the Expo Client App from Appstore for iPhone and Expo Project app from Goggle Playstore for Android phone.
 
-Assuming node.js is already installed, install the Expo CLI with the command:
+Assuming [node.js](https://nodejs.org/en/) is already installed, install the Expo CLI with the command:
 
-```bash
+```
 npm install -g expo-cli
 ```
 
 To clone this repository, run the command:
 
-```bash
+```
 git clone https://github.com/stevehanphoto/expo-mobileflashcard.git
 ```
 
@@ -24,7 +24,7 @@ cd in to expo-mobileflashcard project folder
 
 run the commands:
 
-```bash
+```
 npm install
 
 expo start
@@ -35,8 +35,7 @@ On the iphone use the phone's camera, an option to open app with the Expo should
 On the Android phone, open the Expo app go to Scan QR Code under Tools.
 
 ## Project Folder Structure
-```bash
-├── CONTRIBUTING.md # Not modified.
+```
 ├── README.md # This file.
 ├── package.json # npm package manager file.
 ├── App.json # Expo configuration
@@ -58,3 +57,5 @@ On the Android phone, open the Expo app go to Scan QR Code under Tools.
     └── App.js # Main app
 ```
 
+## Resources
+- [Project Rubric](https://review.udacity.com/#!/rubrics/1021/view)
